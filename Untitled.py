@@ -1,7 +1,35 @@
-from tkinter.filedialog import askopenfilename
-import docx
-import requests, random 
+import os
+from pip._internal import main
+def pip_install(package):
+    if package == "docx":
+        os.system("pip uninstall docx -y")
+        main(['install', "python-docx"])
+    try:
+        main(['install', package])
+    except Exception as identifier:
+        pass
+try:
+    from tkinter.filedialog import askopenfilename
+    import sys
+    import docx
+    import requests
+    import random
+    from bs4 import BeautifulSoup 
+except Exception as e:
+    print(e);print("So installing it!!")
+    e = str(e)
+    pkg = e[e.index("'")+1:-1]
+    pip_install(pkg)
+    #os.system("python " + os.path.basename(__file__))
+#reimporting them
 from bs4 import BeautifulSoup 
+from tkinter.filedialog import askopenfilename
+import sys
+import docx
+import requests, random
+
+
+
 
 do_not_replace = [
     "i","I","and","the","am","hi"
@@ -49,3 +77,4 @@ s = doit(sentence)
 
 print("before: "+sentence)
 print("aafter: "+s)
+
